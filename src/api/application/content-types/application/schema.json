@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "universities",
+  "collectionName": "applications",
   "info": {
-    "singularName": "university",
-    "pluralName": "universities",
-    "displayName": "University",
-    "description": ""
+    "singularName": "application",
+    "pluralName": "applications",
+    "displayName": "Application"
   },
   "options": {
     "draftAndPublish": true
@@ -16,7 +15,12 @@
     }
   },
   "attributes": {
-    "UniversityName": {
+    "program": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::program.program"
+    },
+    "ApplicantFirstName": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -25,43 +29,35 @@
       "type": "string",
       "required": true
     },
-    "UniversityDescription": {
+    "ApplicantMiddleName": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "richtext",
+      "type": "string"
+    },
+    "ApplicantLastName": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
       "required": true
     },
-    "Founded": {
+    "ApplicantEmail": {
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       },
-      "type": "date"
-    },
-    "Country": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "enumeration",
-      "enum": [
-        "India",
-        "Canada",
-        "USA",
-        "Germany",
-        "Italy",
-        "Australia",
-        "UK"
-      ],
+      "type": "string",
       "required": true
     },
-    "Photo": {
+    "LetterOfRecommendation": {
       "allowedTypes": [
+        "files",
         "images"
       ],
       "type": "media",
@@ -72,9 +68,10 @@
         }
       }
     },
-    "Video": {
+    "IdentityProof": {
       "allowedTypes": [
-        "videos"
+        "images",
+        "files"
       ],
       "type": "media",
       "multiple": true,
@@ -82,13 +79,16 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
-    "programs": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::program.program",
-      "mappedBy": "university"
+    "Resume": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "richtext"
     }
   }
 }
